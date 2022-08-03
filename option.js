@@ -1,0 +1,293 @@
+/*
+ * @Author: Liusong He
+ * @Date: 2022-07-19 14:06:29
+ * @LastEditTime: 2022-08-03 19:15:59
+ * @FilePath: \Agent_manu\option.js
+ * @Email: lh2u21@soton.ac.uk
+ * @Description: 
+ */
+let page = document.getElementById("buttonDiv")
+let selectedClassName = "current"
+let submitBtn1 = document.getElementById("submitBtn1")
+let submitBtn2 = document.getElementById('submitBtn2')
+let an1 = -1
+let an2 = -1
+let an3 = -1
+const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2b", "#4688f1"]
+const reIntro = document.getElementById('reintro')
+const title = document.getElementById('reintroTitle')
+const intro = document.getElementById('intro')
+let reintroRedo = document.getElementById('reintroRedo')
+let firstQuestionnaire = document.getElementById('firstQuestionnaire')
+let secondQuestionnaire = document.getElementById('secondQuestionnaire')
+let secformInstra = document.getElementById('secformInstra')
+let role
+//Get current level, adjust the intro text
+const level = chrome.storage.sync.get('level', ({ level }) => {
+  console.log('option.js level:' + level)
+  if (level && level == 3) {
+    intro.style.display = 'none'
+    title.innerHTML = " <h2>Your Privacy Personas is <strong>Privacy Fundamentalists</strong></h2>"
+    reintro.style.display = 'block'
+  }
+  else if (level && level == 2) {
+    intro.style.display = 'none'
+    title.innerHTML = " <h2>Your Privacy Personas is <strong>Privacy Pragmatists</strong></h2>"
+    reintro.style.display = 'block'
+  }
+  else if (level && level == 1) {
+    intro.style.display = 'none'
+    title.innerHTML = " <h2>Your Privacy Personas is <strong>Privacy Unconcerned</strong></h2>"
+    reintro.style.display = 'block'
+  }
+  else { }
+})
+//submit event
+submitBtn1.addEventListener("click", handleFirstForm)
+function handleFirstForm(event) {
+  const radioButtons1 = document.querySelectorAll('input[name="form1Question1"]')
+  const radioButtons2 = document.querySelectorAll('input[name="form1Question2"]')
+  const radioButtons3 = document.querySelectorAll('input[name="form1Question3"]')
+  for (const radioButton of radioButtons1) {
+    if (radioButton.checked) {
+      // an1 = parseInt(radioButton.id.split('_op')[1])
+      an1 = parseInt(radioButton.value)
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons2) {
+    if (radioButton.checked) {
+      // an2 = parseInt(radioButton.id.split('_op')[1])
+      an2 = parseInt(radioButton.value)
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons3) {
+    if (radioButton.checked) {
+      // an3 = parseInt(radioButton.id.split('_op')[1])
+      an3 = parseInt(radioButton.value)
+      console.log(radioButton.value)
+      break
+    }
+  }
+  // an1 = an1.split('_op')[1]
+  // an2 = an2.split('_op')[1]
+  // an3 = an3.split('_op')[1]
+  console.log(an1 + ' ' + an2 + ' ' + an3)
+  if (an1 != -1 && an2 != -1 && an3 != -1) {
+    let level
+    let result = an1 + an2 + an3
+    console.log("result: " + result)
+    if (result >= 110 && result != 125) {
+      level = 3
+      role = 'Privacy Fundamentalists'
+      chrome.storage.sync.set({ level }, function () {
+        console.log('level is set to ' + level)
+      })
+      window.alert("After system analysis, you are " + role)
+    }
+    else if (result == 125) {
+      level = 1
+      role = 'Privacy Unconcerned'
+      chrome.storage.sync.set({ level }, function () {
+        console.log('level is set to ' + level)
+      })
+      window.alert("After system analysis, you are " + role)
+    }
+    else {
+      level = 2
+      isFinish = 0
+      role = 'Privacy Pragmatists'
+      chrome.storage.sync.set({ level }, function () {
+        console.log('level is set to ' + level)
+      })
+      //For showing the second form
+      // chrome.storage.sync.set({ isFinish }, function () {
+      //   console.log('level is set to ' + isFinish)
+      // })
+      //Change the view, show the second form
+      window.alert("After system analysis, you are " + role + ". Please finish the following question to get a more accurate result.")
+      reintroRedo.style.display = 'none'
+      firstQuestionnaire.style.display = 'none'
+      secondQuestionnaire.style.display = 'block'
+      secformInstra.style.display = 'block'
+      event.preventDefault()
+    }
+  }
+  // window.alert("After system analysis, you are " + role)
+  // event.preventDefault()
+}
+
+submitBtn2.addEventListener('click', handleSecondForm)
+
+function handleSecondForm(event) {
+  let an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
+  const radioButtons1 = document.querySelectorAll('input[name="form2Question1"]')
+  const radioButtons2 = document.querySelectorAll('input[name="form2Question2"]')
+  const radioButtons3 = document.querySelectorAll('input[name="form2Question3"]')
+  const radioButtons4 = document.querySelectorAll('input[name="form2Question4"]')
+  const radioButtons5 = document.querySelectorAll('input[name="form2Question5"]')
+  const radioButtons6 = document.querySelectorAll('input[name="form2Question6"]')
+  const radioButtons7 = document.querySelectorAll('input[name="form2Question7"]')
+  const radioButtons8 = document.querySelectorAll('input[name="form2Question8"]')
+  const radioButtons9 = document.querySelectorAll('input[name="form2Question9"]')
+  const radioButtons10 = document.querySelectorAll('input[name="form2Question10"]')
+  const radioButtons11 = document.querySelectorAll('input[name="form2Question11"]')
+
+  for (const radioButton of radioButtons1) {
+    if (radioButton.checked) {
+      // an1 = parseInt(radioButton.id.split('_op')[1])
+      an1 = parseInt(radioButton.value)
+      console.log(radioButton.value)
+      chrome.storage.sync.set({ an1 }, function () {
+        console.log('an1 is set to ' + an1)
+      })
+      break
+    }
+  }
+  for (const radioButton of radioButtons2) {
+    if (radioButton.checked) {
+      an2 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an2 }, function () {
+        console.log('an2 is set to ' + an2)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons3) {
+    if (radioButton.checked) {
+      an3 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an3 }, function () {
+        console.log('an3 is set to ' + an3)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons4) {
+    if (radioButton.checked) {
+      an4 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an4 }, function () {
+        console.log('an4 is set to ' + an4)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons5) {
+    if (radioButton.checked) {
+      an5 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an5 }, function () {
+        console.log('an5 is set to ' + an5)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons6) {
+    if (radioButton.checked) {
+      an6 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an6 }, function () {
+        console.log('an6 is set to ' + an6)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons7) {
+    if (radioButton.checked) {
+      an7 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an7 }, function () {
+        console.log('an7 is set to ' + an7)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons8) {
+    if (radioButton.checked) {
+      an8 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an8 }, function () {
+        console.log('an8 is set to ' + an8)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons9) {
+    if (radioButton.checked) {
+      an9 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an9 }, function () {
+        console.log('an9 is set to ' + an9)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons10) {
+    if (radioButton.checked) {
+      an10 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an10 }, function () {
+        console.log('an10 is set to ' + an10)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  for (const radioButton of radioButtons11) {
+    if (radioButton.checked) {
+      an11 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an11 }, function () {
+        console.log('an11 is set to ' + an11)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  event.preventDefault()
+}
+
+function handleButtonClick(event) {
+  // Remove styling from the previously selected color
+  let current = event.target.parentElement.querySelector(
+    `.${selectedClassName}`
+  )
+  if (current && current !== event.target) {
+    current.classList.remove(selectedClassName)
+  }
+
+  // Mark the button as selected
+  let color = event.target.dataset.color
+  event.target.classList.add(selectedClassName)
+  chrome.storage.sync.set({ color })
+}
+
+// Add a button to the page for each supplied color
+function constructOptions(buttonColors) {
+  chrome.storage.sync.get("color", (data) => {
+    let currentColor = data.color
+    // For each color we were provided…
+    for (let buttonColor of buttonColors) {
+      // …create a button with that color…
+      let button = document.createElement("button")
+      button.dataset.color = buttonColor
+      button.style.backgroundColor = buttonColor
+
+      // …mark the currently selected color…
+      if (buttonColor === currentColor) {
+        button.classList.add(selectedClassName)
+      }
+
+      // …and register a listener for when that button is clicked
+      button.addEventListener("click", handleButtonClick)
+      page.appendChild(button)
+    }
+  })
+}
+
+//Initallize the page bu constructing the color options
+// constructOptions(presetButtonColors)
+

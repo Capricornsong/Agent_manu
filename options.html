@@ -1,0 +1,564 @@
+<!--
+ * @Author: Liusong He
+ * @Date: 2022-07-19 14:03:02
+ * @LastEditTime: 2022-08-03 18:52:31
+ * @FilePath: \Agent_manu\options.html
+ * @Email: lh2u21@soton.ac.uk
+ * @Description: Option page
+-->
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div id="buttonDiv"></div>
+
+    <div class="container-fluid" style="display: hidden;padding-left: 50px;padding-right: 50px;">
+
+
+        <div id="intro">
+            <h1 class="display-5">Please follow the question to get your <strong>Privacy Personas</strong></h1>
+            <blockquote class="blockquote">
+                <p>Let us know what's your Privacy Personas in order to help you to protect your data in a
+                    better
+                    way.
+                </p>
+            </blockquote>
+        </div>
+        <div id="reintro" style="display: hidden;margin: 20px;">
+            <h1 id="reintroTitle"></h1>
+            <blockquote id="reintroRedo" class="blockquote">
+                You can redo the survey to get a new Privacy Personas.
+            </blockquote>
+            <blockquote id="secformInstra" class="blockquote" style="display: none;">Please finish the following
+                question to
+                get a more accurate
+                result</blockquote>
+        </div>
+        <div class="row">
+            <div id="firstQuestionnaire" class="col-8 ">
+                <form class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="h6 col-12" style="margin-top: 15px; ">
+                                1. Consumers have lost all control over how personal information is collected and used
+                                by companies.
+                            </div>
+                            <div style="margin: 10px;" class="row">
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question1"
+                                        id="form1Question1_op1" value=10 required="">
+                                    <label class="form-check-label" for="form1Question1">
+                                        Strongly Disagree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question1"
+                                        id="form1Question1_op2" value=10 required="">
+                                    <label class="form-check-label" for="form1Question1">
+                                        Somewhat Disagree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question1"
+                                        id="form1Question1_op3" value=5 required="">
+                                    <label class="form-check-label" for="form1Question1">
+                                        Somewhat Agree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question1"
+                                        id="form1Question1_op4" value=5 required="">
+                                    <label class="form-check-label" for="form1Question1">
+                                        Strongly Agree
+                                    </label>
+                                    <div class="invalid-feedback">Please select one option before submit.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="h6 col-12" style="margin-top: 15px; ">
+                                2. Most businesses handle the personal information they collect about consumers in a
+                                proper and confidential way.
+                            </div>
+                            <div style="margin: 5px;" class="row">
+                                <div class="form-check col-3    col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question2"
+                                        id="form1Question2_op1" value=100 required="">
+                                    <label class="form-check-label" for="form1Question2">
+                                        Strongly Disagree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question2"
+                                        id="form1Question2_op2" value=100 required="">
+                                    <label class="form-check-label" for="form1Question2">
+                                        Somewhat Disagree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question2"
+                                        id="form1Question2_op3" value=1 required="">
+                                    <label class="form-check-label" for="form1Question2">
+                                        Somewhat Agree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question2"
+                                        id="form1Question2_op4" value=1 required="">
+                                    <label class="form-check-label" for="form1Question2">
+                                        Strongly Agree
+                                    </label>
+                                    <div class="invalid-feedback">Please select one option before submit.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="h6 col-12" style="margin-top: 15px; ">
+                                3. Existing laws and organizational practices provide a reasonable level of protection
+                                for consumer privacy today.
+                            </div>
+                            <div style="margin: 5px;" class="row">
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question3"
+                                        id="form1Question3_op1" value=20 required="">
+                                    <label class="form-check-label" for="form1Question3">
+                                        Strongly Disagree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question3"
+                                        id="form1Question3_op2" value=20 required="">
+                                    <label class="form-check-label" for="form1Question3">
+                                        Somewhat Disagree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question3"
+                                        id="form1Question3_op3" value="1" required="">
+                                    <label class="form-check-label" for="form1Question3">
+                                        Somewhat Agree
+                                    </label>
+                                </div>
+                                <div class="form-check col-3 col-md-3">
+                                    <input class="form-check-input" type="radio" name="form1Question3"
+                                        id="form1Question3_op4" value=1 required="">
+                                    <label class="form-check-label" for="form1Question3">
+                                        Strongly Agree
+                                    </label>
+                                    <div class="invalid-feedback">Please select one option before submit.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" d-flex justify-content-sm-end" style="margin-top: 10px;"><button id="submitBtn1"
+                            type="submit" class="btn btn-primary col-2">Submit</button></div>
+                </form>
+            </div>
+
+
+            <form id="secondQuestionnaire" class="col-8 " style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                1. Store and/or access information on your device
+                            </summary>
+                            <p style="font-size: 13px;">Cookies, device identifiers, or other information can
+                                be stored or accessed on your
+                                device for the purposes presented to you.</p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question1"
+                                    id="form2Question1_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question1">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question1"
+                                    id="form2Question1_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question1">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                2. Precise geolocation data
+                            </summary>
+                            <p style="font-size: 13px;">Your precise geolocation data can be used in support of one
+                                or more purposes. This means your location can be accurate to within several meters.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question2"
+                                    id="form2Question2_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question2">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question2"
+                                    id="form2Question2_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question2">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                3. Basic ads
+                            </summary>
+                            <p style="font-size: 13px;">Ads can be shown to you based on the content you're viewing,
+                                the app you're using, your approximate location, or your device type.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question3"
+                                    id="form2Question3_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question3">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question3"
+                                    id="form2Question3_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question3">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                4. Create a personalised ads profile
+                            </summary>
+                            <p style="font-size: 13px;">A profile can be built about you and your interests to show
+                                you personalised ads that are relevant to you.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question4"
+                                    id="form2Question4_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question4">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question4"
+                                    id="form2Question4_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question4">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                5. Select personalised ads
+                            </summary>
+                            <p style="font-size: 13px;">Select personalised adsPersonalised ads can be shown to you
+                                based on a profile about you.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question5"
+                                    id="form2Question5_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question5">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question5"
+                                    id="form2Question5_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question5">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                6. Create a personalised content profile
+                            </summary>
+                            <p style="font-size: 13px;">A profile can be built about you and your interests to show
+                                you personalised content that is relevant to you.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question6"
+                                    id="form2Question6_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question6">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question6"
+                                    id="form2Question6_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question6">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                7. Select personalised content
+                            </summary>
+                            <p style="font-size: 13px;">Personalised content can be shown to you based on a profile
+                                about you.</p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question7"
+                                    id="form2Question7_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question7">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question7"
+                                    id="form2Question7_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question7">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                8. Measure ad performance
+                            </summary>
+                            <p style="font-size: 13px;">The performance and effectiveness of ads that you see or
+                                interact with can be measured.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question8"
+                                    id="form2Question8_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question8">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question8"
+                                    id="form2Question8_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question8">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                9. Measure content performance
+                            </summary>
+                            <p style="font-size: 13px;">Measure content performanceThe performance and effectiveness
+                                of content that you see or interact with can be measured.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question9"
+                                    id="form2Question9_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question9">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question9"
+                                    id="form2Question9_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question9">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                10. Apply market research to generate audience insight
+                            </summary>
+                            <p style="font-size: 13px;">Market research can be used to learn more about the
+                                audiences who visit sites/apps and view ads.
+                            </p>
+                        </details>
+
+                        <div style="margin: 10px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question10"
+                                    id="form2Question10_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question10">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question10"
+                                    id="form2Question10_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question10">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <details>
+                            <summary class="h6 col-12" style="margin-top: 15px; ">
+                                11. Develop and improve products
+                            </summary>
+                            <p style="font-size: 13px;">Your data can be used to improve existing systems and
+                                software, and to develop new products
+                            </p>
+                        </details>
+
+                        <div style="margin: 11px;" class="row">
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question11"
+                                    id="form2Question11question11_op1" value=1 required="">
+                                <label class="form-check-label" for="form2Question11">
+                                    Allow
+                                </label>
+                            </div>
+                            <div class="form-check col-6 col-md-6">
+                                <input class="form-check-input" type="radio" name="form2Question11"
+                                    id="form2Question11_op2" value=0 required="">
+                                <label class="form-check-label" for="form2Question11">
+                                    Don't allow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" d-flex justify-content-sm-end" style="margin-top: 10px;"><button id="submitBtn2"
+                        type="submit" class="btn btn-primary col-2">Submit</button></div>
+            </form>
+
+
+            <div class="col-4">
+                <div class="accordion" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                What's Privacy Fundamentalists
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body"> This group sees privacy as an especially high value, rejects
+                                the claims of many organizations to need or be entitled to get personal information for
+                                their business or governmental programs, thinks more individuals should simply refuse to
+                                give
+                                out information they are asked for, and favors enactment of strong federal and state
+                                laws to secure privacy rights and control organizational discretion.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                What's Privacy Pragmatists
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">This group weighs the value to them and society of various
+                                business or government programs calling for personal information, examines the relevance
+                                and
+                                social propriety of the information sought, wants to know the potential risks to privacy
+                                or security of their information, looks to see whether fair information practices are
+                                being
+                                widely enough observed, and then decides whether they will agree or disagree with
+                                specific information activities – with their trust in the particular industry or company
+                                involved being a critical decisional factor. The pragmatists favor voluntary standards
+                                and consumer choice over legislation and government enforcement. But they will back
+                                legislation when they think not enough is being done - or meaningfully done - by
+                                voluntary
+                                means.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                What's Privacy Unconcerned
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">This group doesn't know what the "privacy fuss" is all about,
+                                supports the benefits of most organizational programs over warnings about privacy abuse,
+                                has little problem with supplying their personal information to government authorities
+                                or businesses, and sees no need for creating another government bureaucracy (a “Federal
+                                Big Brother) to protect someone's privacy.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="option.js"></script>
+</body>
+
+</html>
