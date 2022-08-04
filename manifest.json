@@ -33,8 +33,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/*"],
-      "js": ["contentScript.js"]
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_start"
     }
   ],
   "options_page": "options.html"

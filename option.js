@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 14:06:29
- * @LastEditTime: 2022-08-03 19:15:59
+ * @LastEditTime: 2022-08-04 22:07:21
  * @FilePath: \Agent_manu\option.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -123,7 +123,7 @@ function handleFirstForm(event) {
 submitBtn2.addEventListener('click', handleSecondForm)
 
 function handleSecondForm(event) {
-  let an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
+  let an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12
   const radioButtons1 = document.querySelectorAll('input[name="form2Question1"]')
   const radioButtons2 = document.querySelectorAll('input[name="form2Question2"]')
   const radioButtons3 = document.querySelectorAll('input[name="form2Question3"]')
@@ -135,6 +135,7 @@ function handleSecondForm(event) {
   const radioButtons9 = document.querySelectorAll('input[name="form2Question9"]')
   const radioButtons10 = document.querySelectorAll('input[name="form2Question10"]')
   const radioButtons11 = document.querySelectorAll('input[name="form2Question11"]')
+  const radioButtons12 = document.querySelectorAll('input[name="form2Question12"]')
 
   for (const radioButton of radioButtons1) {
     if (radioButton.checked) {
@@ -247,7 +248,17 @@ function handleSecondForm(event) {
       break
     }
   }
-  event.preventDefault()
+  for (const radioButton of radioButtons12) {
+    if (radioButton.checked) {
+      an12 = parseInt(radioButton.value)
+      chrome.storage.sync.set({ an12 }, function () {
+        console.log('an12 is set to ' + an12)
+      })
+      console.log(radioButton.value)
+      break
+    }
+  }
+  // event.preventDefault()
 }
 
 function handleButtonClick(event) {
