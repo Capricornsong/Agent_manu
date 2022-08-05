@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-24 15:16:59
- * @LastEditTime: 2022-08-04 22:20:10
+ * @LastEditTime: 2022-08-05 17:13:42
  * @FilePath: \Agent_manu\contentScript.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -62,7 +62,6 @@
         // bsAlert.show()
         if (type === 'Google') {
             googleBan()
-
         }
         else if (type === 'Other') {
             other()
@@ -121,13 +120,16 @@
             // rejectAll.click()
             console.log(banner)
             // banner.style.visibility = "hidden"
-
         }
     }
 
     const other = () => {
         console.log("hello others")
+        // console.log({ document })
+        const checkboxlist = document.querySelectorAll('input[type=checkbox]')
+        console.log({ checkboxlist })
         const banner = document.getElementById('onetrust-banner-sdk')
+        console.log({ banner })
         if (banner) {
             if (category == 1) {
                 const acceptAll = document.getElementById("onetrust-accept-btn-handler")
@@ -136,40 +138,59 @@
             else if (category == 2) {
                 console.log('other cat = 2')
                 const showPurpose = document.getElementById('onetrust-pc-btn-handler')
-                showPurpose.click()
+                if (showPurpose)
+                    showPurpose.click()
                 setTimeout(() => {
-                    let performanceCookies = document.getElementById('ot-group-id-C0002')
-                    let preciseGeolocation = document.getElementById('ot-group-id-ISFV2_1')
-                    let functoinalCookies = document.getElementById('ot-group-id-C0003')
-                    let targetingCookies = document.getElementById('ot-group-id-C0004')
-                    let storeInfo = document.getElementById('ot-group-id-IABV2_1')
-                    let basicAd = document.getElementById('ot-sub-group-id-IABV2_2')
-                    let createAdsProfile = document.getElementById('ot-sub-group-id-IABV2_3')
-                    let selectAdsProfile = document.getElementById('ot-sub-group-id-IABV2_4')
-                    let createContentProfile = document.getElementById('ot-sub-group-id-IABV2_5')
-                    let seleteContentProfile = document.getElementById('ot-sub-group-id-IABV2_6')
-                    let measureAd = document.getElementById('ot-sub-group-id-IABV2_7')
-                    let measureContent = document.getElementById('ot-sub-group-id-IABV2_8')
-                    let market = document.getElementById('ot-sub-group-id-IABV2_9')
-                    let improve = document.getElementById('ot-sub-group-id-IABV2_10')
-                    let activityScan = document.getElementById('ot-group-id-ISFV2_2')
-                    let confirmBtn = document.getElementsByClassName('save-preference-btn-handler onetrust-close-btn-handler')
-                    functoinalCookies.checked = true
-                    targetingCookies.checked = true
-                    storeInfo.checked = true
-                    any1 == 1 ? performanceCookies.checked = true : console.log('any1: ' + any1)
-                    any2 == 1 ? preciseGeolocation.checked = true : console.log('any2: ' + any2)
-                    any3 == 1 ? basicAd.checked = true : console.log('any3: ' + any3)
-                    any4 == 1 ? createAdsProfile.checked = true : console.log('any4: ' + any4)
-                    any5 == 1 ? selectAdsProfile.checked = true : console.log('any5: ' + any5)
-                    any6 == 1 ? createContentProfile.checked = true : console.log('any6: ' + any6)
-                    any7 == 1 ? seleteContentProfile.checked = true : console.log('any7: ' + any7)
-                    any8 == 1 ? measureAd.checked = true : console.log('any8: ' + any8)
-                    any9 == 1 ? measureContent.checked = true : console.log('any9: ' + any9)
-                    any10 == 1 ? market.checked = true : console.log('any10: ' + any10)
-                    any11 == 1 ? improve.checked = true : console.log('any11: ' + any11)
-                    an12 == 1 ? activityScan.checked = true : console.log('any12: ' + any12)
-                    // confirmBtn.click()
+
+                    let performanceCookies1 = document.getElementById('ot-group-id-C0002')
+                    let performanceCookies2 = document.getElementById('ot-group-id-2')
+                    if (performanceCookies1) {
+                        let preciseGeolocation = document.getElementById('ot-group-id-ISFV2_1')
+                        let functoinalCookies = document.getElementById('ot-group-id-C0003')
+                        let targetingCookies = document.getElementById('ot-group-id-C0004')
+                        let storeInfo = document.getElementById('ot-group-id-IABV2_1')
+                        let basicAd = document.getElementById('ot-sub-group-id-IABV2_2')
+                        let createAdsProfile = document.getElementById('ot-sub-group-id-IABV2_3')
+                        let selectAdsProfile = document.getElementById('ot-sub-group-id-IABV2_4')
+                        let createContentProfile = document.getElementById('ot-sub-group-id-IABV2_5')
+                        let seleteContentProfile = document.getElementById('ot-sub-group-id-IABV2_6')
+                        let measureAd = document.getElementById('ot-sub-group-id-IABV2_7')
+                        let measureContent = document.getElementById('ot-sub-group-id-IABV2_8')
+                        let market = document.getElementById('ot-sub-group-id-IABV2_9')
+                        let improve = document.getElementById('ot-sub-group-id-IABV2_10')
+                        let activityScan = document.getElementById('ot-group-id-ISFV2_2')
+                        let confirmBtn = document.getElementsByClassName('save-preference-btn-handler onetrust-close-btn-handler')
+                        functoinalCookies.checked = true
+                        targetingCookies.checked = true
+                        performanceCookies1.checked = true
+                        any1 == 1 ? storeInfo.checked = true : console.log('any1: ' + any1)
+                        any2 == 1 ? preciseGeolocation.checked = true : console.log('any2: ' + any2)
+                        any3 == 1 ? basicAd.checked = true : console.log('any3: ' + any3)
+                        any4 == 1 ? createAdsProfile.checked = true : console.log('any4: ' + any4)
+                        any5 == 1 ? selectAdsProfile.checked = true : console.log('any5: ' + any5)
+                        any6 == 1 ? createContentProfile.checked = true : console.log('any6: ' + any6)
+                        any7 == 1 ? seleteContentProfile.checked = true : console.log('any7: ' + any7)
+                        any8 == 1 ? measureAd.checked = true : console.log('any8: ' + any8)
+                        any9 == 1 ? measureContent.checked = true : console.log('any9: ' + any9)
+                        any10 == 1 ? market.checked = true : console.log('any10: ' + any10)
+                        any11 == 1 ? improve.checked = true : console.log('any11: ' + any11)
+                        an12 == 1 ? activityScan.checked = true : console.log('any12: ' + any12)
+
+                        // confirmBtn.click()
+                    }
+                    //only ask cookies
+                    else {
+                        let functoinalCookies = document.getElementById('ot-group-id-3')
+                        let targetingCookies = document.getElementById('ot-group-id-4')
+                        let socialMediaCookies = document.getElementById('ot-group-id-8')
+                        let confirmBtn = document.getElementsByClassName('save-preference-btn-handler onetrust-close-btn-handler')
+                        functoinalCookies.checked = true
+                        targetingCookies.checked = true
+                        performanceCookies2.checked = true
+                        any6 == 1 ? socialMediaCookies.checked = true : console.log('any6: ' + any6)
+
+                        // confirmBtn.click()
+                    }
                 }, 500)
                 // const acceptAll = document.getElementById("L2AGLb")
             }
