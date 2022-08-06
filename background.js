@@ -1,26 +1,31 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 11:59:02
- * @LastEditTime: 2022-08-04 18:28:39
+ * @LastEditTime: 2022-08-06 15:02:45
  * @FilePath: \Agent_manu\background.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
  */
-let color = "#3aa757"
 
+
+//chrome
 chrome.runtime.onInstalled.addListener(() => {
-    // chrome.storage.sync.set({ color })
     console.log('installed!')
     chrome.tabs.create({
         url: 'options.html'
     })
 })
-
+// chrome.scripting.executeScript({
+//     target: { tabId: tabId },
+//     files: ['server.js']
+// })
+// chrome.webNavigation.onCampleted.addListener()
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // console.log(tab.url)
     // console.log('tabid: ' + tabId)
     // console.log(changeInfo.status)
+
     if (changeInfo.status === 'complete')
         if (changeInfo.status === 'complete' && tab.url && tab.url.includes("google.com/search")) {
             // const queryParameters = tab.url.split("?")[1]

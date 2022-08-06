@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-24 15:16:59
- * @LastEditTime: 2022-08-05 17:13:42
+ * @LastEditTime: 2022-08-06 17:05:49
  * @FilePath: \Agent_manu\contentScript.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -27,7 +27,6 @@
                 any10 = an10
                 any11 = an11
                 any12 = an12
-
                 console.log('an8: ' + an8)
             })
         }
@@ -35,6 +34,7 @@
             category = level
         }
     })
+
 
 
     // chrome.tabs.onUpdated.addListener((tabId, tab) => {
@@ -126,8 +126,8 @@
     const other = () => {
         console.log("hello others")
         // console.log({ document })
-        const checkboxlist = document.querySelectorAll('input[type=checkbox]')
-        console.log({ checkboxlist })
+        // const checkboxlist = document.querySelectorAll('input[type=checkbox]')
+        // console.log({ checkboxlist })
         const banner = document.getElementById('onetrust-banner-sdk')
         console.log({ banner })
         if (banner) {
@@ -141,7 +141,6 @@
                 if (showPurpose)
                     showPurpose.click()
                 setTimeout(() => {
-
                     let performanceCookies1 = document.getElementById('ot-group-id-C0002')
                     let performanceCookies2 = document.getElementById('ot-group-id-2')
                     if (performanceCookies1) {
@@ -201,8 +200,10 @@
                 }
                 else {
                     const showPurpose = document.getElementById('onetrust-pc-btn-handler')
+                    let confirmBtn = document.getElementsByClassName('save-preference-btn-handler onetrust-close-btn-handler')
                     if (showPurpose) {
                         // showPurpose.click()
+                        // confirmBtn.click()
                     }
                 }
 

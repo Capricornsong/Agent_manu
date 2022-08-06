@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 14:06:29
- * @LastEditTime: 2022-08-04 22:07:21
+ * @LastEditTime: 2022-08-06 17:02:56
  * @FilePath: \Agent_manu\option.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -22,6 +22,7 @@ let firstQuestionnaire = document.getElementById('firstQuestionnaire')
 let secondQuestionnaire = document.getElementById('secondQuestionnaire')
 let secformInstra = document.getElementById('secformInstra')
 let role
+
 //Get current level, adjust the intro text
 const level = chrome.storage.sync.get('level', ({ level }) => {
   console.log('option.js level:' + level)
@@ -79,6 +80,7 @@ function handleFirstForm(event) {
   if (an1 != -1 && an2 != -1 && an3 != -1) {
     let level
     let result = an1 + an2 + an3
+    var obj = new Object()
     console.log("result: " + result)
     if (result >= 110 && result != 125) {
       level = 3
@@ -86,7 +88,17 @@ function handleFirstForm(event) {
       chrome.storage.sync.set({ level }, function () {
         console.log('level is set to ' + level)
       })
+      // chrome.notifications.create(opt)
+      //sent the result to server
+
+      obj.level = "3"
+      var oReq = new XMLHttpRequest()
+      oReq.open('POST', 'http://localhost:3000/level', true)
+      oReq.setRequestHeader("Content-Type", "application/json")
+      oReq.send(JSON.stringify(obj))
+      console.log('aleady send request')
       window.alert("After system analysis, you are " + role)
+      // event.preventDefault()
     }
     else if (result == 125) {
       level = 1
@@ -94,6 +106,13 @@ function handleFirstForm(event) {
       chrome.storage.sync.set({ level }, function () {
         console.log('level is set to ' + level)
       })
+      //sent the result to server\
+      obj.level = "1"
+      var oReq = new XMLHttpRequest()
+      oReq.open('POST', 'http://localhost:3000/level', true)
+      oReq.setRequestHeader("Content-Type", "application/json")
+      oReq.send(JSON.stringify(obj))
+      console.log('aleady send request')
       window.alert("After system analysis, you are " + role)
     }
     else {
@@ -258,7 +277,37 @@ function handleSecondForm(event) {
       break
     }
   }
-  // event.preventDefault()
+  window.alert("Your preference has been successfully set!")
+
+  //sent the result to server
+  prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12)
+  event.preventDefault(JSON.stringify(obj))
+}
+
+function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12) {
+  var obj = new Object()
+  var addiInfo = new Object()
+  obj.level = "2"
+  addiInfo.storageOrAccessInfo = an1
+  addiInfo.geolocation = an2
+  addiInfo.basicAds = an3
+  addiInfo.createAdsProfile = an4
+  addiInfo.selectAdsProfile = an5
+  addiInfo.createContentProfile = an6
+  addiInfo.seleteContentProfile = an7
+  addiInfo.audienceSight = an8
+  addiInfo.measureAdsPerformance = an9
+  addiInfo.measureContentPerformance = an10
+  addiInfo.improveProducts = an11
+  addiInfo.activelyScan = an12
+  obj.addiInfo = addiInfo
+  var jsonString = JSON.stringify(obj)
+  console.log(jsonString)
+  var oReq = new XMLHttpRequest()
+  oReq.open('POST', 'http://localhost:3000/level', true)
+  oReq.setRequestHeader("Content-Type", "application/json")
+  oReq.send(jsonString)
+  console.log('aleady send request')
 }
 
 function handleButtonClick(event) {
