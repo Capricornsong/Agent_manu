@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 14:06:29
- * @LastEditTime: 2022-08-06 17:02:56
+ * @LastEditTime: 2022-08-07 15:34:05
  * @FilePath: \Agent_manu\option.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -21,7 +21,13 @@ let reintroRedo = document.getElementById('reintroRedo')
 let firstQuestionnaire = document.getElementById('firstQuestionnaire')
 let secondQuestionnaire = document.getElementById('secondQuestionnaire')
 let secformInstra = document.getElementById('secformInstra')
-let role
+let role, userInformation
+//get user info (if there is)
+chrome.identity.getProfileUserInfo(function (userInfo) {
+  userInformation = userInfo
+  console.log(userInformation)
+})
+
 
 //Get current level, adjust the intro text
 const level = chrome.storage.sync.get('level', ({ level }) => {
@@ -78,6 +84,7 @@ function handleFirstForm(event) {
   // an3 = an3.split('_op')[1]
   console.log(an1 + ' ' + an2 + ' ' + an3)
   if (an1 != -1 && an2 != -1 && an3 != -1) {
+    var userInfo = userInformation
     let level
     let result = an1 + an2 + an3
     var obj = new Object()
@@ -92,6 +99,7 @@ function handleFirstForm(event) {
       //sent the result to server
 
       obj.level = "3"
+      obj.userInfo = userInfo
       var oReq = new XMLHttpRequest()
       oReq.open('POST', 'http://localhost:3000/level', true)
       oReq.setRequestHeader("Content-Type", "application/json")
@@ -108,6 +116,7 @@ function handleFirstForm(event) {
       })
       //sent the result to server\
       obj.level = "1"
+      obj.userInfo = userInfo
       var oReq = new XMLHttpRequest()
       oReq.open('POST', 'http://localhost:3000/level', true)
       oReq.setRequestHeader("Content-Type", "application/json")
@@ -281,13 +290,15 @@ function handleSecondForm(event) {
 
   //sent the result to server
   prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12)
-  event.preventDefault(JSON.stringify(obj))
+  // event.preventDefault()
 }
 
 function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12) {
   var obj = new Object()
   var addiInfo = new Object()
+  var userInfo = userInformation
   obj.level = "2"
+  obj.userInfo = userInfo
   addiInfo.storageOrAccessInfo = an1
   addiInfo.geolocation = an2
   addiInfo.basicAds = an3

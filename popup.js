@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 13:44:31
- * @LastEditTime: 2022-08-06 17:17:44
+ * @LastEditTime: 2022-08-07 13:08:15
  * @FilePath: \Agent_manu\popup.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -33,20 +33,20 @@ const level = chrome.storage.sync.get('level', ({ level }) => {
 //   changeColor.style.backgroundColor = color
 // })
 
-high.addEventListener("click", () => {
-  let level = "high"
-  chrome.storage.local.set({ level })
-  chrome.storage.local.get("level", ({ level }) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const activeTabId = tabs[0].id
-      chrome.scripting.executeScript({
-        target: { tabId: activeTabId },
-        function: () => alert("High was been selected!")
-      })
-    })
-    console.log(level)
-  })
-})
+// high.addEventListener("click", () => {
+//   let level = "high"
+//   chrome.storage.local.set({ level })
+//   chrome.storage.local.get("level", ({ level }) => {
+//     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+//       const activeTabId = tabs[0].id
+//       chrome.scripting.executeScript({
+//         target: { tabId: activeTabId },
+//         function: () => alert("High was been selected!")
+//       })
+//     })
+//     console.log(level)
+//   })
+// })
 
 
 // changeColor.addEventListener("click", async () => {

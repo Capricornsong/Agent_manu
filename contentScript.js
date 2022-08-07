@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-24 15:16:59
- * @LastEditTime: 2022-08-06 17:05:49
+ * @LastEditTime: 2022-08-07 15:06:24
  * @FilePath: \Agent_manu\contentScript.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -34,72 +34,21 @@
             category = level
         }
     })
-
-
-
-    // chrome.tabs.onUpdated.addListener((tabId, tab) => {
-    //     // console.log(tab.url)
-    //     // console.log('tabid: ' + tabId)
-    //     if (tab.url && tab.url.includes("google.com/search")) {
-    //         // const queryParameters = tab.url.split("?")[1]
-    //         // const urlParameters = new URLSearchParams(queryParameters)
-    //         // console.log(urlParameters)
-    //         console.log("onUpdated-google")
-    //         chrome.tabs.sendMessage(tabId, { type: "Google" })
-
-    //     }
-    //     else if (tab.url) {
-    //         console.log("onUpdated-Other")
-    //         chrome.tabs.sendMessage(tabId, { type: "Other" })
-    //     }
-    // })
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
-        console.log("onMessage obj" + obj)
-        const { type, value } = obj
-        console.log("type:" + type)
+        console.log("contentScript type" + obj.type)
+        // const { type, value } = obj
         // toasts.show()
         // t.show()
         // bsAlert.show()
-        if (type === 'Google') {
+
+        if (obj.type && obj.type === 'Google') {
             googleBan()
         }
-        else if (type === 'Other') {
+        else if (obj.type && obj.type === 'Other') {
             other()
         }
+
     })
-
-    // document.addEventListener('DOMSubtreeModified', (e) => {
-    //     console.log(e)
-    // })
-
-    // chrome.runtime.onMessage.addListener(
-    //     function (req, sender, cb) {
-    //         console.log(req)
-    //         console.log('fafguigfuiluihgehwioghwiogho')
-    //         cb({ other: 'value' })
-    //     }
-    // )
-
-    // chrome.runtime.onConnect.addListener(port => {
-    //     port.onMessage.addListener(function (request, sender, sendResponse) {
-    //         console.log(sender.tab ?
-    //             "from a content script:" + sender.tab.url :
-    //             "from the extension")
-
-    //         sendResponse({ farewell: "goodbye" })
-    //     })
-    // })
-
-    // chrome.runtime.onMessage.addListener(
-    //     function (request, sender, sendResponse) {
-    //         console.log(sender.tab ?
-    //             "from a content script:" + sender.tab.url :
-    //             "from the extension")
-
-    //         sendResponse({ farewell: "goodbye" })
-    //     }
-    // )
-
 
     const googleBan = () => {
         console.log('hello google')
