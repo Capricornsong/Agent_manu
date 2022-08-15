@@ -1,7 +1,7 @@
 <!--
  * @Author: Liusong He
  * @Date: 2022-07-19 14:03:02
- * @LastEditTime: 2022-08-07 13:10:48
+ * @LastEditTime: 2022-08-15 22:57:34
  * @FilePath: \Agent_manu\options.html
  * @Email: lh2u21@soton.ac.uk
  * @Description: Option page
@@ -586,6 +586,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div style="display: none;" id="manuSelectionDiv">
+                    <h5 style="margin-top: 136px;">You can manually set your Privacy Persona here.</h5>
+                    <div class="form-floating">
+                        <select class="form-select" id="manu_select" aria-label="Floating label select example">
+                            <option class="manuSelect" value="1">Privacy Unconcerned</option>
+                            <option class="manuSelect" value="2">Privacy Pragmatists</option>
+                            <option class="manuSelect" value="3" selected>Privacy Fundamentalists</option>
+                        </select>
+                        <label for="manu_select">Select as </label>
+                    </div>
+                    <div class=" d-flex justify-content-sm-end" style="margin-top: 10px;"><button id="submitBtn3"
+                            type="submit" class="btn btn-primary col-3">Submit</button></div>
+                </div>
+
             </div>
         </div>
         <script src="option.js"></script>

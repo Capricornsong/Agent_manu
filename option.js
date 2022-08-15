@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 14:06:29
- * @LastEditTime: 2022-08-07 15:34:05
+ * @LastEditTime: 2022-08-15 22:57:03
  * @FilePath: \Agent_manu\option.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -10,6 +10,7 @@ let page = document.getElementById("buttonDiv")
 let selectedClassName = "current"
 let submitBtn1 = document.getElementById("submitBtn1")
 let submitBtn2 = document.getElementById('submitBtn2')
+let submitBtn3 = document.getElementById('submitBtn3')
 let an1 = -1
 let an2 = -1
 let an3 = -1
@@ -21,6 +22,8 @@ let reintroRedo = document.getElementById('reintroRedo')
 let firstQuestionnaire = document.getElementById('firstQuestionnaire')
 let secondQuestionnaire = document.getElementById('secondQuestionnaire')
 let secformInstra = document.getElementById('secformInstra')
+let manuSelect = document.getElementById('manu_select')
+let manuSelectDiv = document.getElementById('manuSelectionDiv')
 let role, userInformation
 //get user info (if there is)
 chrome.identity.getProfileUserInfo(function (userInfo) {
@@ -36,19 +39,26 @@ const level = chrome.storage.sync.get('level', ({ level }) => {
     intro.style.display = 'none'
     title.innerHTML = " <h2>Your Privacy Personas is <strong>Privacy Fundamentalists</strong></h2>"
     reintro.style.display = 'block'
+    manuSelect.innerHTML = '<option value="1" class="manuSelect">Privacy Unconcerned</option><option value="2" class="manuSelect">Privacy Pragmatists</option>'
+    manuSelectDiv.style.display = 'block'
   }
   else if (level && level == 2) {
     intro.style.display = 'none'
     title.innerHTML = " <h2>Your Privacy Personas is <strong>Privacy Pragmatists</strong></h2>"
     reintro.style.display = 'block'
+    manuSelect.innerHTML = '<option value="1" class="manuSelect">Privacy Unconcerned</option><option value="3" class="manuSelect">Privacy Fundamentalists</option>'
+    manuSelectDiv.style.display = 'block'
   }
   else if (level && level == 1) {
     intro.style.display = 'none'
     title.innerHTML = " <h2>Your Privacy Personas is <strong>Privacy Unconcerned</strong></h2>"
     reintro.style.display = 'block'
+    manuSelect.innerHTML = '<option value="2" class="manuSelect">Privacy Pragmatists</option><option value="3" class="manuSelect">Privacy Fundamentalists</option>'
+    manuSelectDiv.style.display = 'block'
   }
   else { }
 })
+const level1 = level
 //submit event
 submitBtn1.addEventListener("click", handleFirstForm)
 function handleFirstForm(event) {
@@ -319,6 +329,87 @@ function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
   oReq.setRequestHeader("Content-Type", "application/json")
   oReq.send(jsonString)
   console.log('aleady send request')
+}
+
+function sentRequestSaveLevel(N) {
+  if (N === 1) {
+
+  }
+  else if (N === 2) {
+
+  }
+  else { }
+}
+
+submitBtn3.addEventListener('click', handleManu)
+function handleManu(event) {
+
+  const selectBoxs = document.querySelectorAll('option[class="manuSelect"]')
+  console.log(level1)
+  if (selectBoxs.length == 0) {
+    window.alert("Please select you privacy persona before submit!")
+  }
+  else {
+    var userInfo = userInformation
+    var obj = new Object()
+    for (const selection of selectBoxs) {
+      if (selection.selected) {
+        if (level == selection.value) {
+          window.alert("Please select a different Privacy Persona!" + role)
+        }
+        else if (selection.value == 2) {
+          let level = 2
+          isFinish = 0
+          role = 'Privacy Pragmatists'
+          chrome.storage.sync.set({ level }, function () {
+            console.log('level is set to ' + level)
+          })
+
+          window.alert("Because you selected" + role + ". Please finish the following question to get a more accurate result.")
+          reintroRedo.style.display = 'none'
+          firstQuestionnaire.style.display = 'none'
+          secondQuestionnaire.style.display = 'block'
+          secformInstra.style.display = 'block'
+          event.preventDefault()
+        }
+        else if (selection.value == 1) {
+          let level = 1
+          role = 'Privacy Unconcerned'
+          chrome.storage.sync.set({ level }, function () {
+            console.log('level is set to ' + level)
+          })
+          //sent the result to server\
+          obj.level = "1"
+          obj.userInfo = userInfo
+          var oReq = new XMLHttpRequest()
+          oReq.open('POST', 'http://localhost:3000/level', true)
+          oReq.setRequestHeader("Content-Type", "application/json")
+          oReq.send(JSON.stringify(obj))
+          console.log('aleady send request')
+          window.alert("Select successfully, now you are " + role)
+        }
+        else {
+          let level = 3
+          role = 'Privacy Fundamentalists'
+          chrome.storage.sync.set({ level }, function () {
+            console.log('level is set to ' + level)
+          })
+
+          //sent the result to server
+          obj.level = "3"
+          obj.userInfo = userInfo
+          var oReq = new XMLHttpRequest()
+          oReq.open('POST', 'http://localhost:3000/level', true)
+          oReq.setRequestHeader("Content-Type", "application/json")
+          oReq.send(JSON.stringify(obj))
+          console.log('aleady send request')
+          window.alert("Select successfully, now you are " + role)
+        }
+        break
+      }
+    }
+  }
+
 }
 
 function handleButtonClick(event) {
