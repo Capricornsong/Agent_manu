@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-24 15:16:59
- * @LastEditTime: 2022-08-12 00:22:16
+ * @LastEditTime: 2022-08-18 15:49:12
  * @FilePath: \Agent_manu\contentScript.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -11,6 +11,7 @@
 (() => {
     let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12
     var category = -1
+    let Times
     chrome.storage.sync.get('level', ({ level }) => {
         if (level && level == 2) {
             category = level
@@ -34,6 +35,11 @@
             category = level
         }
     })
+    chrome.storage.sync.get('times', ({ times }) => {
+        console.log(times)
+        Times = times
+    })
+
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         console.log("contentScript type" + obj.type)
         // const { type, value } = obj
@@ -41,12 +47,18 @@
         // t.show()
         // bsAlert.show()
 
+        // if (obj.times) {
+        //     console.log('times receive from background in contentscript' + obj.times)
+        //     times = obj.times
+        // }
+
         if (obj.type && obj.type === 'Google') {
             googleBan()
         }
         else if (obj.type && obj.type === 'Other') {
             other()
         }
+
 
     })
 
@@ -81,6 +93,7 @@
             const banner = document.getElementById('onetrust-banner-sdk')
             console.log({ banner })
             if (banner) {
+
                 if (category == 1) {
                     const acceptAll = document.getElementById("onetrust-accept-btn-handler")
                     // acceptAll.click()
@@ -144,7 +157,7 @@
 
                             // confirmBtn.click()
                         }
-                    }, 700)
+                    }, 600)
                     // const acceptAll = document.getElementById("L2AGLb")
                 }
                 else if (category == 3) {
@@ -162,11 +175,29 @@
                     }
 
                 }
+                var times = Times + 1
+                console.log('times: ' + times)
+                chrome.storage.sync.set({ times }, function () {
+                    console.log('times is set to ' + times)
+                })
+
+                // times = times + 1
+                // console.log('times: ' + times)
+                // if (times) {
+                // chrome.storage.sync.set({ times }, function () {
+                //     console.log('times is set to ' + times)
+                // })
+                //     console.log('1111')
+                // }
+                // else {
+                //     times = 1
+                //     chrome.storage.sync.set({ times }, function () {
+                //         console.log('times is set to ' + times)
+                //     })
+                //     console.log('2222')
+                // }
             }
-        }, 500)
-
-
-
+        }, 600)
     }
     // googleBan()
 })()

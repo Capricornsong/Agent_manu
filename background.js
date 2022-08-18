@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 11:59:02
- * @LastEditTime: 2022-08-07 15:28:54
+ * @LastEditTime: 2022-08-18 15:46:53
  * @FilePath: \Agent_manu\background.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -14,9 +14,23 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.tabs.create({
         url: 'options.html'
     })
-    chrome.storage.sync.get('level', ({ level }) => {
+    chrome.storage.sync.get(['level', 'times'], ({ level, times }) => {
         let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12
         console.log('already get level when install')
+        console.log('times: ' + times)
+
+        if (times) {
+            // chrome.runtime.sendMessage({ times: times })
+            console.log('times got from cloud: ' + times)
+        }
+        else {
+            var times = 0
+            chrome.storage.sync.set({ times }, () => {
+                console.log('times have been set to: ' + times)
+            })
+            // chrome.runtime.sendMessage({ times: 0 })
+        }
+
         if (level && level == 2) {
             // category = level
             // chrome.runtime.sendMessage({ isExist: "YES-2" })
@@ -60,12 +74,10 @@ chrome.runtime.onInstalled.addListener(() => {
 // })
 // chrome.webNavigation.onCampleted.addListener()
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    // console.log(tab.url)
-    // console.log('tabid: ' + tabId)
-    // console.log(changeInfo.status)
 
-    if (changeInfo.status === 'complete')
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+
+    if (changeInfo.status === 'complete') {
         if (changeInfo.status === 'complete' && tab.url && tab.url.includes("google.com/search")) {
             // const queryParameters = tab.url.split("?")[1]
             // const urlParameters = new URLSearchParams(queryParameters)
@@ -78,6 +90,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             console.log("onUpdated-Other")
             chrome.tabs.sendMessage(tabId, { type: "Other" })
         }
+    }
 })
 //get user info (if there is)
 chrome.identity.getProfileUserInfo(function (userInfo) {
