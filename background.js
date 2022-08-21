@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 11:59:02
- * @LastEditTime: 2022-08-18 15:46:53
+ * @LastEditTime: 2022-08-21 16:37:04
  * @FilePath: \Agent_manu\background.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -15,7 +15,7 @@ chrome.runtime.onInstalled.addListener(() => {
         url: 'options.html'
     })
     chrome.storage.sync.get(['level', 'times'], ({ level, times }) => {
-        let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12
+        let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12, any13, any14, any15
         console.log('already get level when install')
         console.log('times: ' + times)
 
@@ -34,7 +34,7 @@ chrome.runtime.onInstalled.addListener(() => {
         if (level && level == 2) {
             // category = level
             // chrome.runtime.sendMessage({ isExist: "YES-2" })
-            chrome.storage.sync.get(['an1', 'an2', 'an3', 'an4', 'an5', 'an6', 'an7', 'an8', 'an9', 'an10', 'an11', 'an12'], ({ an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12 }) => {
+            chrome.storage.sync.get(['an1', 'an2', 'an3', 'an4', 'an5', 'an6', 'an7', 'an8', 'an9', 'an10', 'an11', 'an12', 'an13', 'an14', 'an15'], ({ an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15 }) => {
                 any1 = an1
                 any2 = an2
                 any3 = an3
@@ -47,8 +47,12 @@ chrome.runtime.onInstalled.addListener(() => {
                 any10 = an10
                 any11 = an11
                 any12 = an12
-                console.log('an12: ' + an12)
-                prepareUserInfo(any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12)
+                any13 = an13
+                any14 = an14
+                any14 = an15
+
+                console.log('an15: ' + an15)
+                prepareUserInfo(any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12, any13, any14, any15)
             })
 
         }
@@ -98,7 +102,7 @@ chrome.identity.getProfileUserInfo(function (userInfo) {
     console.log(userInformation)
 })
 
-function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12) {
+function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15) {
     var obj = new Object()
     var addiInfo = new Object()
     var userInfo = userInformation
@@ -115,6 +119,9 @@ function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
     addiInfo.measureContentPerformance = an10
     addiInfo.improveProducts = an11
     addiInfo.activelyScan = an12
+    addiInfo.analyticsCks = an13
+    addiInfo.functionalCks = an14
+    addiInfo.targetCks = an15
     obj.addiInfo = addiInfo
     obj.userInfo = userInfo
     var jsonString = JSON.stringify(obj)
@@ -128,6 +135,7 @@ function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
         body: jsonString
     })
 }
+
 
 
 // chrome.runtime.onMessage.addListener((obj, sender, response) => {

@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 14:06:29
- * @LastEditTime: 2022-08-15 22:57:03
+ * @LastEditTime: 2022-08-21 16:21:17
  * @FilePath: \Agent_manu\option.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -99,7 +99,7 @@ function handleFirstForm(event) {
     let result = an1 + an2 + an3
     var obj = new Object()
     console.log("result: " + result)
-    if (result >= 110 && result != 125) {
+    if (result == 12) {
       level = 3
       role = 'Privacy Fundamentalists'
       chrome.storage.sync.set({ level }, function () {
@@ -174,6 +174,10 @@ function handleSecondForm(event) {
   const radioButtons10 = document.querySelectorAll('input[name="form2Question10"]')
   const radioButtons11 = document.querySelectorAll('input[name="form2Question11"]')
   const radioButtons12 = document.querySelectorAll('input[name="form2Question12"]')
+  const radioButtons13 = document.querySelectorAll('input[name="form2Question13"]')
+  const radioButtons14 = document.querySelectorAll('input[name="form2Question14"]')
+  const radioButtons15 = document.querySelectorAll('input[name="form2Question15"]')
+
 
   for (const radioButton of radioButtons1) {
     if (radioButton.checked) {
@@ -296,14 +300,47 @@ function handleSecondForm(event) {
       break
     }
   }
+  for (const radioButton of radioButtons13) {
+    if (radioButton.checked) {
+      // an1 = parseInt(radioButton.id.split('_op')[1])
+      an13 = parseInt(radioButton.value)
+      console.log(radioButton.value)
+      chrome.storage.sync.set({ an13 }, function () {
+        console.log('an13 is set to ' + an13)
+      })
+      break
+    }
+  }
+  for (const radioButton of radioButtons14) {
+    if (radioButton.checked) {
+      // an1 = parseInt(radioButton.id.split('_op')[1])
+      an14 = parseInt(radioButton.value)
+      console.log(radioButton.value)
+      chrome.storage.sync.set({ an14 }, function () {
+        console.log('an14 is set to ' + an14)
+      })
+      break
+    }
+  }
+  for (const radioButton of radioButtons15) {
+    if (radioButton.checked) {
+      // an1 = parseInt(radioButton.id.split('_op')[1])
+      an15 = parseInt(radioButton.value)
+      console.log(radioButton.value)
+      chrome.storage.sync.set({ an15 }, function () {
+        console.log('an15 is set to ' + an15)
+      })
+      break
+    }
+  }
   window.alert("Your preference has been successfully set!")
 
   //sent the result to server
-  prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12)
+  prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15)
   // event.preventDefault()
 }
 
-function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12) {
+function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15) {
   var obj = new Object()
   var addiInfo = new Object()
   var userInfo = userInformation
@@ -321,6 +358,9 @@ function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
   addiInfo.measureContentPerformance = an10
   addiInfo.improveProducts = an11
   addiInfo.activelyScan = an12
+  addiInfo.analyticsCks = an13
+  addiInfo.functionalCks = an14
+  addiInfo.targetCks = an15
   obj.addiInfo = addiInfo
   var jsonString = JSON.stringify(obj)
   console.log(jsonString)

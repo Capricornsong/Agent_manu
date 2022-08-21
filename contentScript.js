@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-24 15:16:59
- * @LastEditTime: 2022-08-18 15:49:12
+ * @LastEditTime: 2022-08-21 16:34:52
  * @FilePath: \Agent_manu\contentScript.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -9,13 +9,13 @@
 
 
 (() => {
-    let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12
+    let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12, any13, any14, any15
     var category = -1
     let Times
     chrome.storage.sync.get('level', ({ level }) => {
         if (level && level == 2) {
             category = level
-            chrome.storage.sync.get(['an1', 'an2', 'an3', 'an4', 'an5', 'an6', 'an7', 'an8', 'an9', 'an10', 'an11', 'an12'], ({ an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12 }) => {
+            chrome.storage.sync.get(['an1', 'an2', 'an3', 'an4', 'an5', 'an6', 'an7', 'an8', 'an9', 'an10', 'an11', 'an12', 'an13', 'an14', 'an15'], ({ an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15 }) => {
                 any1 = an1
                 any2 = an2
                 any3 = an3
@@ -28,7 +28,10 @@
                 any10 = an10
                 any11 = an11
                 any12 = an12
-                console.log('an8: ' + an8)
+                any13 = an12
+                any14 = an14
+                any15 = an15
+                console.log('an15: ' + an15)
             })
         }
         else if (level) {
@@ -123,9 +126,9 @@
                             let improve = document.getElementById('ot-sub-group-id-IABV2_10')
                             let activityScan = document.getElementById('ot-group-id-ISFV2_2')
                             let confirmBtn = document.getElementsByClassName('save-preference-btn-handler onetrust-close-btn-handler')
-                            functoinalCookies ? functoinalCookies.checked = true : console.log('funcCookies is null')
-                            targetingCookies ? targetingCookies.checked = true : console.log('targetCookies is null')
-                            performanceCookies1 ? performanceCookies1.checked = true : console.log('performanceCookies1 is null')
+                            // functoinalCookies ? functoinalCookies.checked = true : console.log('funcCookies is null')
+                            // targetingCookies ? targetingCookies.checked = true : console.log('targetCookies is null')
+                            // performanceCookies1 ? performanceCookies1.checked = true : console.log('performanceCookies1 is null')
                             any1 == 1 ? storeInfo.checked = true : console.log('any1: ' + any1)
                             any2 == 1 ? preciseGeolocation.checked = true : console.log('any2: ' + any2)
                             any3 == 1 ? basicAd.checked = true : console.log('any3: ' + any3)
@@ -137,7 +140,10 @@
                             any9 == 1 ? measureContent.checked = true : console.log('any9: ' + any9)
                             any10 == 1 ? market.checked = true : console.log('any10: ' + any10)
                             any11 == 1 ? improve.checked = true : console.log('any11: ' + any11)
-                            an12 == 1 ? activityScan.checked = true : console.log('any12: ' + any12)
+                            any12 == 1 ? activityScan.checked = true : console.log('any12: ' + any12)
+                            any13 == 1 ? performanceCookies1.checked = true : console.log('any13: ' + any13)
+                            any14 == 1 ? functoinalCookies.checked = true : console.log('any14: ' + any14)
+                            any15 == 1 ? targetingCookies.checked = true : console.log('any15: ' + any15)
 
                             // confirmBtn.click()
                         }
@@ -148,11 +154,14 @@
                             let socialMediaCookies = document.getElementById('ot-group-id-8')
                             let confirmBtn = document.getElementsByClassName('save-preference-btn-handler onetrust-close-btn-handler')
                             if (functoinalCookies)
-                                functoinalCookies.checked = true
+                                any14 == 1 ? functoinalCookies.checked = true : console.log('any14: ' + any14)
+                            // functoinalCookies.checked = true
                             if (targetingCookies)
-                                targetingCookies.checked = true
+                                any15 == 1 ? targetingCookies.checked = true : console.log('any15: ' + any15)
+                            // targetingCookies.checked = true
                             if (performanceCookies2)
-                                performanceCookies2.checked = true
+                                any13 == 1 ? performanceCookies2.checked = true : console.log('any13: ' + any13)
+                            // performanceCookies2.checked = true
                             any6 == 1 ? socialMediaCookies.checked = true : console.log('any6: ' + any6)
 
                             // confirmBtn.click()
