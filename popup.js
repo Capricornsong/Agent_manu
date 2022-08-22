@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 13:44:31
- * @LastEditTime: 2022-08-18 15:00:15
+ * @LastEditTime: 2022-08-21 17:52:19
  * @FilePath: \Agent_manu\popup.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -17,17 +17,17 @@ const level = chrome.storage.sync.get(['level', 'times'], ({ level, times }) => 
 
   if (level && level == 3) {
     beforeTest.style.display = 'none'
-    afterTest.innerHTML = " <h3>Your Privacy Personas is <strong>Privacy Fundamentalists</strong></h3><h6>Number of times consent was given <span class='badge bg-secondary'>" + times + "</span></h6>"
+    afterTest.innerHTML = " <h3>Your Privacy Personas is <strong>Privacy Fundamentalists</strong></h3><h5>The number of consent the agent has given: <span class='badge text-bg-primary'>" + times + "</span></h5>"
     afterTest.style.display = 'block'
   }
   else if (level && level == 2) {
     beforeTest.style.display = 'none'
-    afterTest.innerHTML = " <h3>Your Privacy Personas is <strong>Privacy Pragmatists</strong></h3><h6>Number of times consent was given <span class='badge bg-secondary'>" + times + "</span></h6>"
+    afterTest.innerHTML = " <h3>Your Privacy Personas is <strong>Privacy Pragmatists</strong></h3><h5>The number of consent the agent has given: <span class='badge text-bg-primary'>" + times + "</span></h5>"
     afterTest.style.display = 'block'
   }
   else if (level && level == 1) {
     beforeTest.style.display = 'none'
-    afterTest.innerHTML = " <h3>Your Privacy Personas is <strong>Privacy Unconcerned</strong></h3><h6>Number of times consent was given <span class='badge bg-secondary'>" + times + "</span></h6>"
+    afterTest.innerHTML = " <h3>Your Privacy Personas is <strong>Privacy Unconcerned</strong></h3><h5>The number of consent the agent has given: <span class='badge text-bg-primary'>" + times + "</span></h5>"
     afterTest.style.display = 'block'
 
   }
