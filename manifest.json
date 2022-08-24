@@ -1,6 +1,6 @@
 {
-  "name": "Digital Agent",
-  "description": "This is a digital agent that can help you with (not) giving consent to personal data collecting by websites",
+  "name": "Consent Agent",
+  "description": "This is a consent agent that can help you with (not) giving consent to personal data collecting by websites",
   "version": "1.0",
   "manifest_version": 3,
   "background": {

@@ -7,10 +7,9 @@
  * @Description: 
  */
 
-//Get current level, adjust the intro text
+//Get current level and times, adjust the intro text
 const beforeTest = document.getElementById('beforeTest')
 const afterTest = document.getElementById('afterTest')
-// const constNumb = document.getElementById('consentNums')
 const level = chrome.storage.sync.get(['level', 'times'], ({ level, times }) => {
   console.log('popup.js level:' + level)
   console.log('popup.js times:' + times)
