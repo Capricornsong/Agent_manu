@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 14:06:29
- * @LastEditTime: 2022-08-21 16:21:17
+ * @LastEditTime: 2022-08-27 18:30:02
  * @FilePath: \Agent_manu\option.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -60,8 +60,7 @@ const level = chrome.storage.sync.get('level', ({ level }) => {
 })
 const level1 = level
 //submit event
-submitBtn1.addEventListener("click", handleFirstForm)
-function handleFirstForm(event) {
+document.getElementById('form1').addEventListener("submit", (event) => {
   const radioButtons1 = document.querySelectorAll('input[name="form1Question1"]')
   const radioButtons2 = document.querySelectorAll('input[name="form1Question2"]')
   const radioButtons3 = document.querySelectorAll('input[name="form1Question3"]')
@@ -93,75 +92,110 @@ function handleFirstForm(event) {
   // an2 = an2.split('_op')[1]
   // an3 = an3.split('_op')[1]
   console.log(an1 + ' ' + an2 + ' ' + an3)
-  if (an1 != -1 && an2 != -1 && an3 != -1) {
-    var userInfo = userInformation
-    let level
-    let result = an1 + an2 + an3
-    var obj = new Object()
-    console.log("result: " + result)
-    if (result == 12) {
-      level = 3
-      role = 'Privacy Fundamentalists'
-      chrome.storage.sync.set({ level }, function () {
-        console.log('level is set to ' + level)
-      })
-      // chrome.notifications.create(opt)
-      //sent the result to server
+  // if (an1 != -1 && an2 != -1 && an3 != -1) {
+  var userInfo = userInformation
+  let level
+  let result = an1 + an2 + an3
+  var obj = new Object()
+  var addiInfo = new Object()
 
-      obj.level = "3"
-      obj.userInfo = userInfo
-      var oReq = new XMLHttpRequest()
-      oReq.open('POST', 'http://localhost:3000/level', true)
-      oReq.setRequestHeader("Content-Type", "application/json")
-      oReq.send(JSON.stringify(obj))
-      console.log('aleady send request')
-      window.alert("After system analysis, you are " + role)
-      // event.preventDefault()
-    }
-    else if (result == 125) {
-      level = 1
-      role = 'Privacy Unconcerned'
-      chrome.storage.sync.set({ level }, function () {
-        console.log('level is set to ' + level)
-      })
-      //sent the result to server\
-      obj.level = "1"
-      obj.userInfo = userInfo
-      var oReq = new XMLHttpRequest()
-      oReq.open('POST', 'http://localhost:3000/level', true)
-      oReq.setRequestHeader("Content-Type", "application/json")
-      oReq.send(JSON.stringify(obj))
-      console.log('aleady send request')
-      window.alert("After system analysis, you are " + role)
-    }
-    else {
-      level = 2
-      isFinish = 0
-      role = 'Privacy Pragmatists'
-      chrome.storage.sync.set({ level }, function () {
-        console.log('level is set to ' + level)
-      })
-      //For showing the second form
-      // chrome.storage.sync.set({ isFinish }, function () {
-      //   console.log('level is set to ' + isFinish)
-      // })
-      //Change the view, show the second form
-      window.alert("After system analysis, you are " + role + ". Please finish the following question to get a more accurate result.")
-      reintroRedo.style.display = 'none'
-      firstQuestionnaire.style.display = 'none'
-      secondQuestionnaire.style.display = 'block'
-      secformInstra.style.display = 'block'
-      event.preventDefault()
-    }
+  console.log("result: " + result)
+  if (result == 12) {
+    level = 3
+    role = 'Privacy Fundamentalists'
+    let an1 = 1; let an2 = 1; let an3 = 1; let an4 = 1; let an5 = 1; let an6 = 1; let an7 = 1; let an8 = 1; let an9 = 1; let an10 = 1; let an11 = 1; let an12 = 1; let an13 = 1; let an14 = 1; let an15 = 1
+    chrome.storage.sync.set({ level, an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15 }, function () {
+      console.log('level is set to ' + level)
+    })
+    // chrome.notifications.create(opt)
+    //sent the result to server
+    obj.level = "3"
+    obj.userInfo = userInfo
+    addiInfo.storageOrAccessInfo = an1
+    addiInfo.geolocation = 0
+    addiInfo.basicAds = an3
+    addiInfo.createAdsProfile = 0
+    addiInfo.selectAdsProfile = 0
+    addiInfo.createContentProfile = 0
+    addiInfo.seleteContentProfile = 0
+    addiInfo.measureAdsPerformance = 0
+    addiInfo.measureContentPerformance = 0
+    addiInfo.audienceSight = 0
+    addiInfo.improveProducts = 0
+    addiInfo.activelyScan = 0
+    addiInfo.analyticsCks = 0
+    addiInfo.functionalCks = 0
+    addiInfo.targetCks = 0
+    obj.addiInfo = addiInfo
+    var oReq = new XMLHttpRequest()
+    oReq.open('POST', 'http://localhost:3000/level', true)
+    oReq.setRequestHeader("Content-Type", "application/json")
+    oReq.send(JSON.stringify(obj))
+    console.log('aleady send request')
+    window.alert("After system analysis, you are " + role)
+    // event.preventDefault()
   }
+  else if (result == 125) {
+    level = 1
+    role = 'Privacy Unconcerned'
+    let an1 = 1; let an2 = 1; let an3 = 1; let an4 = 1; let an5 = 1; let an6 = 1; let an7 = 1; let an8 = 1; let an9 = 1; let an10 = 1; let an11 = 1; let an12 = 1; let an13 = 1; let an14 = 1; let an15 = 1
+    chrome.storage.sync.set({ level, an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15 }, function () {
+      console.log('level is set to ' + level)
+    })
+    //sent the result to server\
+    obj.level = "1"
+    addiInfo.storageOrAccessInfo = 1
+    addiInfo.geolocation = 1
+    addiInfo.basicAds = 1
+    addiInfo.createAdsProfile = 1
+    addiInfo.selectAdsProfile = 1
+    addiInfo.createContentProfile = 1
+    addiInfo.seleteContentProfile = 1
+    addiInfo.measureAdsPerformance = 1
+    addiInfo.measureContentPerformance = 1
+    addiInfo.audienceSight = 1
+    addiInfo.improveProducts = 1
+    addiInfo.activelyScan = 1
+    addiInfo.analyticsCks = 1
+    addiInfo.functionalCks = 1
+    addiInfo.targetCks = 1
+    obj.addiInfo = addiInfo
+    obj.userInfo = userInfo
+    window.alert("After system analysis, you are " + role)
+    var oReq = new XMLHttpRequest()
+    oReq.open('POST', 'http://localhost:3000/level', true)
+    oReq.setRequestHeader("Content-Type", "application/json")
+    oReq.send(JSON.stringify(obj))
+    console.log('aleady send request')
+    // event.preventDefault()
+  }
+  else {
+    level = 2
+    isFinish = 0
+    role = 'Privacy Pragmatists'
+    chrome.storage.sync.set({ level }, function () {
+      console.log('level is set to ' + level)
+    })
+    //Change the view, show the second form
+    window.alert("After system analysis, you are " + role + ". Please finish the following question to get a more accurate result.")
+    reintroRedo.style.display = 'none'
+    firstQuestionnaire.style.display = 'none'
+    secondQuestionnaire.style.display = 'block'
+    secformInstra.style.display = 'block'
+    event.preventDefault()
+  }
+  // }
   // window.alert("After system analysis, you are " + role)
   // event.preventDefault()
+})
+function handleFirstForm(event) {
+
 }
 
-submitBtn2.addEventListener('click', handleSecondForm)
+document.getElementById('secondQuestionnaire').addEventListener('submit', handleSecondForm)
 
 function handleSecondForm(event) {
-  let an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12
+  let an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15
   const radioButtons1 = document.querySelectorAll('input[name="form2Question1"]')
   const radioButtons2 = document.querySelectorAll('input[name="form2Question2"]')
   const radioButtons3 = document.querySelectorAll('input[name="form2Question3"]')
@@ -353,9 +387,9 @@ function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
   addiInfo.selectAdsProfile = an5
   addiInfo.createContentProfile = an6
   addiInfo.seleteContentProfile = an7
-  addiInfo.audienceSight = an8
-  addiInfo.measureAdsPerformance = an9
-  addiInfo.measureContentPerformance = an10
+  addiInfo.measureAdsPerformance = an8
+  addiInfo.measureContentPerformance = an9
+  addiInfo.audienceSight = an10
   addiInfo.improveProducts = an11
   addiInfo.activelyScan = an12
   addiInfo.analyticsCks = an13

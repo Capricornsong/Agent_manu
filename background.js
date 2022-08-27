@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-19 11:59:02
- * @LastEditTime: 2022-08-23 16:24:58
+ * @LastEditTime: 2022-08-27 18:56:38
  * @FilePath: \Agent_manu\background.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.tabs.create({
         url: 'options.html'
     })
-    chrome.storage.sync.get(['level', 'times'], ({ level, times }) => {
+    chrome.storage.sync.get(['level', 'times', 'urls'], ({ level, times, urls }) => {
         let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12, any13, any14, any15
         console.log('already get level when install')
         console.log('times: ' + times)
@@ -29,6 +29,17 @@ chrome.runtime.onInstalled.addListener(() => {
                 console.log('times have been set to: ' + times)
             })
         }
+        if (urls) {
+            console.log('urls from background: ' + urls)
+        }
+        else {
+            var urls = new Array()
+            urls.push('www.google.com')
+            chrome.storage.sync.set({ urls }, () => {
+                console.log('urls is set to ' + urls)
+            })
+        }
+
         // if user had a persona in level 2(privacy pragmatism)
         if (level && level == 2) {
             chrome.storage.sync.get(['an1', 'an2', 'an3', 'an4', 'an5', 'an6', 'an7', 'an8', 'an9', 'an10', 'an11', 'an12', 'an13', 'an14', 'an15'], ({ an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15 }) => {
@@ -46,7 +57,7 @@ chrome.runtime.onInstalled.addListener(() => {
                 any12 = an12
                 any13 = an13
                 any14 = an14
-                any14 = an15
+                any15 = an15
                 console.log('an15: ' + an15)
                 prepareUserInfo(any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12, any13, any14, any15)
             })
@@ -98,9 +109,9 @@ function prepareUserInfo(an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11
     addiInfo.selectAdsProfile = an5
     addiInfo.createContentProfile = an6
     addiInfo.seleteContentProfile = an7
-    addiInfo.audienceSight = an8
-    addiInfo.measureAdsPerformance = an9
-    addiInfo.measureContentPerformance = an10
+    addiInfo.measureAdsPerformance = an8
+    addiInfo.measureContentPerformance = an9
+    addiInfo.audienceSight = an10
     addiInfo.improveProducts = an11
     addiInfo.activelyScan = an12
     addiInfo.analyticsCks = an13

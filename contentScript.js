@@ -1,7 +1,7 @@
 /*
  * @Author: Liusong He
  * @Date: 2022-07-24 15:16:59
- * @LastEditTime: 2022-08-24 21:05:50
+ * @LastEditTime: 2022-08-27 20:01:32
  * @FilePath: \Agent_manu\contentScript.js
  * @Email: lh2u21@soton.ac.uk
  * @Description: 
@@ -12,6 +12,7 @@
     let any1, any2, any3, any4, any5, any6, any7, any8, any9, any10, any11, any12, any13, any14, any15
     var category = -1
     let Times
+    let Urls = new Array()
     chrome.storage.sync.get('level', ({ level }) => {
         if (level && level == 2) {
             category = level
@@ -41,6 +42,11 @@
     chrome.storage.sync.get('times', ({ times }) => {
         console.log(times)
         Times = times
+    })
+    chrome.storage.sync.get('urls', ({ urls }) => {
+        console.log(urls)
+        Urls = urls
+        console.log(Urls)
     })
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
@@ -91,7 +97,7 @@
             //detect is there a OneTrust notice on the page
             const banner = document.getElementById('onetrust-banner-sdk')
             const QuantCastBanner = document.getElementById('qc-cmp2-container')
-            console.log({ QuantCastBanner })
+            console.log({ banner })
             //If there is a notice from OneTrust 
             if (banner) {
                 //For Privacy Fundamentalists
@@ -110,6 +116,14 @@
                         let performanceCookies2 = document.getElementById('ot-group-id-2')
                         let storeInfo = document.getElementById('ot-group-id-IABV2_1')
                         if (performanceCookies1 || storeInfo) {
+                            //special 
+                            let FirstPtyFunCks = document.getElementById('ot-group-id-f00')
+                            let FirstPtypfmCks = document.getElementById('ot-group-id-m00')
+                            let FirstPtytgtCks = document.getElementById('ot-group-id-t00')
+                            let SpFunCks = document.getElementById('ot-group-id-f02')
+                            let SpPfmCks = document.getElementById('ot-group-id-f02')
+                            let SpTgtCks = document.getElementById('ot-group-id-f02')
+
                             let preciseGeolocation = document.getElementById('ot-group-id-ISFV2_1')
                             let functoinalCookies = document.getElementById('ot-group-id-C0003')
                             let targetingCookies = document.getElementById('ot-group-id-C0004')
@@ -143,6 +157,14 @@
                             any13 == 1 && performanceCookies1 ? performanceCookies1.checked = true : console.log('any13: ' + any13)
                             any14 == 1 && functoinalCookies ? functoinalCookies.checked = true : console.log('any14: ' + any14)
                             any15 == 1 && targetingCookies ? targetingCookies.checked = true : console.log('any15: ' + any15)
+
+                            any13 == 1 && FirstPtypfmCks ? FirstPtypfmCks.checked = true : console.log('any13: ' + any13)
+                            any14 == 1 && FirstPtyFunCks ? FirstPtyFunCks.checked = true : console.log('any14: ' + any14)
+                            any15 == 1 && FirstPtytgtCks ? FirstPtytgtCks.checked = true : console.log('any15: ' + any15)
+
+                            any13 == 1 && SpPfmCks ? SpPfmCks.checked = true : console.log('any13: ' + any13)
+                            any14 == 1 && SpFunCks ? SpFunCks.checked = true : console.log('any14: ' + any14)
+                            any15 == 1 && SpTgtCks ? SpTgtCks.checked = true : console.log('any15: ' + any15)
 
                             // confirmBtn.click()
                         }
@@ -182,7 +204,6 @@
                             // confirmBtn.click()
                         }
                     }
-
                 }
                 //Calculation the number of consent, and set to clound
                 var times = Times + 1
@@ -190,6 +211,25 @@
                 chrome.storage.sync.set({ times }, function () {
                     console.log('times is set to ' + times)
                 })
+                //current url
+                var s = window.location.toString()
+                //start at
+                console.log(s.search('//') + 2)
+                //end at
+                console.log(s.slice(s.search('//') + 2).indexOf('/'))
+                //target
+                console.log(s.slice(s.search('//') + 2, s.slice(s.search('//') + 2).indexOf('/') + s.search('//') + 2))
+                console.log(Urls.indexOf(s.slice(s.search('//') + 2, s.slice(s.search('//') + 2).indexOf('/') + s.search('//') + 2)))
+                if (Urls.indexOf(s.slice(s.search('//') + 2, s.slice(s.search('//') + 2).indexOf('/') + s.search('//') + 2)) == -1) {
+                    console.log('not exsit')
+                    Urls.push(s.slice(s.search('//') + 2, s.slice(s.search('//') + 2).indexOf('/') + s.search('//') + 2))
+                    var urls = new Array()
+                    urls = Urls
+                    chrome.storage.sync.set({ urls }, function () {
+                        console.log('urls is set to ' + urls)
+                    })
+                }
+
             }
             else if (QuantCastBanner) {
                 //For Privacy Fundamentalists
@@ -282,6 +322,22 @@
                 chrome.storage.sync.set({ times }, function () {
                     console.log('times is set to ' + times)
                 })
+                //current url
+                var s = window.location.toString()
+                //start at
+                console.log(s.search('//') + 2)
+                //end at
+                console.log(s.slice(s.search('//') + 2).indexOf('/'))
+                //target
+                console.log(s.slice(s.search('//') + 2, s.slice(s.search('//') + 2).indexOf('/') + s.search('//') + 2))
+                if (Urls.indexOf(s.slice(s.search('//') + 2, s.slice(s.search('//') + 2).indexOf('/') + s.search('//') + 2)) != -1) {
+                    Urls.push(s.slice(s.search('//') + 2, s.slice(s.search('//') + 2).indexOf('/') + s.search('//') + 2))
+                    var urls = new Array()
+                    urls = Urls
+                    chrome.storage.sync.set({ urls }, function () {
+                        console.log('urls is set to ' + urls)
+                    })
+                }
             }
         }, 600)
     }

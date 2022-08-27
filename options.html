@@ -1,7 +1,7 @@
 <!--
  * @Author: Liusong He
  * @Date: 2022-07-19 14:03:02
- * @LastEditTime: 2022-08-22 16:39:55
+ * @LastEditTime: 2022-08-27 19:35:12
  * @FilePath: \Agent_manu\options.html
  * @Email: lh2u21@soton.ac.uk
  * @Description: Option page
@@ -30,7 +30,8 @@
                     your data in a
                     better
                     way. The agent can help you to make decisions when confront with the request of consent of you
-                    personal data.
+                    personal data. Please rate the following in terms of how much you agree or disagree with each
+                    statement.
                 </p>
             </blockquote>
         </div>
@@ -46,7 +47,7 @@
         </div>
         <div class="row">
             <div id="firstQuestionnaire" class="col-8 ">
-                <form class="row">
+                <form class="needs-validation" id="form1">
                     <div class="card">
                         <div class="card-body">
                             <div class="h6 col-12" style="margin-top: 15px; ">
@@ -120,7 +121,8 @@
                                     <label class="form-check-label" for="form1Question2">
                                         Strongly Agree
                                     </label>
-                                    <div class="invalid-feedback">Please select one option before submit.</div>
+                                    <div class="invalid-feedback">Please select
+                                        one option before submit.</div>
                                 </div>
                             </div>
                         </div>
@@ -164,13 +166,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" d-flex justify-content-sm-end" style="margin-top: 10px;"><button id="submitBtn1"
-                            type="submit" class="btn btn-primary col-2">Submit</button></div>
+                    <button id="submitBtn1" type="submit" class="btn btn-primary col-2"
+                        style="margin-top:10px ; float: right;">Submit</button>
                 </form>
             </div>
 
 
-            <form id="secondQuestionnaire" class="col-8 " style="display: none;">
+            <form id="secondQuestionnaire" class="col-8 needs-validation" style="display: none;">
                 <div class="card">
                     <div class="card-body">
                         <details>
@@ -690,7 +692,7 @@
                 </div>
 
                 <div style="display: none;" id="manuSelectionDiv">
-                    <h5 style="margin-top: 185px;">You can manually set your Privacy Persona here.</h5>
+                    <h5 style="margin-top: 50px;">You can manually set your Privacy Persona here.</h5>
                     <div class="form-floating">
                         <select class="form-select" id="manu_select" aria-label="Floating label select example">
                             <option class="manuSelect" value="1">Privacy Unconcerned</option>
